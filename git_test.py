@@ -1,5 +1,5 @@
 print("Hello World!")
-data = "My name is omer"
+data = input("Please type in something: ")
 words = data.split(' ')
 for word in words:
     try:
