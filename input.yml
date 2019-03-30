@@ -1,13 +1,10 @@
+base:
+    device_type: cisco_ios
+    username: npl
+    password: npl
+    secret: npl
 devices:
     device_1:
-        device_type: cisco_ios
-        host: 10.100.0.100
-        username: npl
-        password: npl
-        secret: npl
+        host: 10.100.0.100     
     device_2:
-        device_type: cisco_ios
         host: 10.100.0.101
-        username: npl
-        password: npl
-        secret: npl

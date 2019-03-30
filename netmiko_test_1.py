@@ -4,21 +4,23 @@ import yaml
 
 with open('input.yml') as stream:
     data = yaml.load(stream, Loader=yaml.FullLoader)
-print(data)
-device1_data = data['devices']['device_1']
-print(device1_data)
 
-R1 = ConnectHandler(**device1_data)
+base_data = data['base']
+devices = data['devices']
+print(devices)
 
-#Enter enable mode
-R1.enable()
+for device, host in devices.items():
+    # print(host)
+    base_data.update(host)
+    # print(base_data)
+    device_ssh = ConnectHandler(**base_data)
 
-#copy the running config to a file
+    device_name = device_ssh.find_prompt().split('>')[0]
 
-R1.send_command('terminal length 0')
-R1_rc = R1.send_command('show run')
-with open('R1_int.txt', 'w') as rc:
-    rc.write(R1_rc)
+    device_ssh.enable()
+    device_ssh.send_command('terminal length 0')
+    device_ssh_rc = device_ssh.send_command('show run')
+    with open(f'{device_name}_running_config.txt', 'w') as rc:
+        rc.write(device_ssh_rc)
 
-
-R1.disconnect()
+    device_ssh.disconnect()
