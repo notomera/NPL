@@ -1,10 +1,24 @@
 base:
+    #default data
+    #for device types and the corresponding argument to be used visit the link below
+    #https://github.com/ktbyers/netmiko/blob/master/netmiko/ssh_dispatcher.py#L70
     device_type: cisco_ios
     username: npl
     password: npl
     secret: npl
+    #the separator between commands is ','
+    commands: show ip int brief, show ip route
 devices:
+    #add data here to overwrite the default
     device_1:
-        host: 10.100.0.100     
+        device_type:
+        host: 10.100.0.100
+        username:
+        password:
+        secret:
     device_2:
         host: 10.100.0.101
+        username:
+        password:
+        secret:
+
