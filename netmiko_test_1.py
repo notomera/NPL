@@ -3,13 +3,10 @@ import yaml
 from copy import deepcopy
 
 # TODO:
-# -add the command to be sent _DONE
-# -type of the device _DONE
-# -password independent connection _DONE
+# -REFACRTOR THE WHOLE CODE WITH FUNCTIONS
 # -add a site name
-# -WHAT IF THERE IS NO ENABLE PASSWORD
-# -style the output with the device name and the command _DONE 50%
 # -Use asyncio for multitasking.
+# -IF THERE IS A SUBNET OF DEVICES THAT YOU WANT TO LOOP OVER
 
 with open('input.yml') as stream:
     data = yaml.load(stream, Loader=yaml.FullLoader)
@@ -26,7 +23,7 @@ for device, host in devices.items():
     # print(f'this is the host data \n{host}')
     # A COPY OF THE DATA THAT WOULD BE MANIPULATED MORE THAN ONCE
     new_base_data = deepcopy(base_data)
-
+    print('hello')
     # INIT THE DEVICE OUTPUT
     device_ssh_data = ''
 
@@ -51,9 +48,10 @@ for device, host in devices.items():
 
     device_ssh.send_command('terminal length 0')
     for command in new_commands:
-        device_ssh_data += '\n {0} {1} {0} \n {2} {3}'.format('*'*20, command, device_ssh.send_command(command), '\n'*5)
-    with open(f'{device_name}_data', 'w') as rc:
-        rc.write(device_ssh_data)
+        device_ssh_data += '\n {0} {1} {0} \n {2} {3}'.format('*' * 20, command, device_ssh.send_command(command),
+                                                              '\n' * 5)
+    with open(f'{device_name}_data.txt', 'w') as captured_data:
+        captured_data.write(device_ssh_data)
 
     device_ssh.disconnect()
 

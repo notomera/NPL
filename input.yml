@@ -17,6 +17,9 @@ devices:
         password:
         secret:
     device_2:
+    # TODO
+    # -IF THERE IS A SUBNET OF DEVICES THAT YOU WANT TO LOOP OVER
+
         host: 10.100.0.101
         username:
         password:
