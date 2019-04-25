@@ -32,5 +32,3 @@ def connection_data(base_data, devices):
         new_commands = deepcopy(commands)
 
         yield new_base_data, new_commands
-        # print(f'this is the commands data \n{commands}')
-        # print(f'this is the new_base_data data \n{new_base_data}')
